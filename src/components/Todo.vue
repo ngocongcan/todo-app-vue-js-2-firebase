@@ -34,7 +34,7 @@
           </thead>
           <tbody>
             <tr v-for="task in tasks">
-              <td><input type="checkbox" class="toggle" v-model="task.completed"></input></td>
+              <td><input type="checkbox" class="toggle" v-model="task.completed" v-on:click="updateTask(task)"></input></td>
               <td><span :class="{completed: task.completed}">{{task.name}}</span></td>
               <td><span class="glyphicon glyphicon-trash" aria-hidden="true" v-on:click="removeTask(task)"></span></td>
             </tr>
@@ -85,13 +85,16 @@ export default {
   },
   // define methods
   methods: {
-            addTask: function () {
-                console.log('Add');
-                tasksRef.push(this.newTask);
-                this.newTask.name = '';
+                addTask: function () {
+                  console.log('Add');
+                  tasksRef.push(this.newTask);
+                  this.newTask.name = '';
                 },
                 removeTask: function (task) {
-                    tasksRef.child(task['.key']).remove();
+                  tasksRef.child(task['.key']).remove();
+                },
+                updateTask: function (task) {
+                  tasksRef.child(task['.key']).child('completed').set(task.completed);
                 }
   }
 }
