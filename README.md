@@ -2,7 +2,7 @@
 
 > A todoapp using Vue.js and firebase
 
-<img src="./screen-shot.PNG" width="200">
+<img src="./screen-shot.PNG" width="600">
 
 ## Build Setup
 
